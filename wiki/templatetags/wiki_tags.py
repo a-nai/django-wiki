@@ -12,6 +12,7 @@ from django.utils.safestring import mark_safe
 from django.template.defaultfilters import striptags
 from django.utils.http import urlquote
 from six.moves import filter
+from myproject.models import WikiArticleread as articleread
 
 register = template.Library()
 
@@ -64,7 +65,18 @@ def wiki_render(context, article, preview_content=None):
     })
     return context
 
-
+@register.simple_tag(takes_context=True)
+def current_read(context, articleid):
+    request = context['request']
+    #import pdb; pdb.set_trace()
+    try:
+     articleread.objects.filter(user_id=request.user.id, article_id=articleid)[0]
+    except articleread.DoesNotExist:
+     user=articleread.objects.create(read='True',user_id=request.user.id,article_id=articleid, paid='False',readed=datetime.datetime.now(),last=datetime.datetime.now())    
+     user.save()
+    return ""#HttpResponse()
+    
+    
 @register.inclusion_tag('wiki/includes/form.html', takes_context=True)
 def wiki_form(context, form_obj):
     if not isinstance(form_obj, BaseForm):
