@@ -65,7 +65,14 @@
                 </li>
                 <li>----------------------</li>
                 <li></li>
-                
+                {% if user.is_authenticated %}
+                 <li>
+                    <a href="{% url 'wiki:logout' %}">
+                      <i class="icon-off"></i>
+                      {% trans "Log out" %}
+                    </a>
+                  </li>
+                {% endif %}
                 </ul>
         </div>
    </div>
