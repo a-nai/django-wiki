@@ -4032,7 +4032,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     vertical-align: middle;
   }
   .navbar-form .form-control {
-    display: inline-block;
+    display:block;
     width: auto;
     vertical-align: middle;
   }
@@ -4053,14 +4053,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-form .control-label {
     margin-bottom: 0;
-    vertical-align: middle;
+    /*vertical-align: middle;*/
   }
   .navbar-form .radio,
   .navbar-form .checkbox {
-    display: inline-block;
+    display: block;/*
     margin-top: 0;
     margin-bottom: 0;
-    vertical-align: middle;
+    vertical-align: middle;*/
   }
   .navbar-form .radio label,
   .navbar-form .checkbox label {
