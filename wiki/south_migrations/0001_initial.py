@@ -9,6 +9,9 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding model 'Article'
+        
+        db.add_column('auth_user', 'balance', self.gf('django.db.models.fields.FloatField')(max_length=100,  null=True, default='0.1'))
+        
         db.create_table(u'wiki_article', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('current_revision', self.gf('django.db.models.fields.related.OneToOneField')(blank=True, related_name=u'current_set', unique=True, null=True, to=orm['wiki.ArticleRevision'])),
@@ -19,10 +22,28 @@ class Migration(SchemaMigration):
             ('group_read', self.gf('django.db.models.fields.BooleanField')(default=True)),
             ('group_write', self.gf('django.db.models.fields.BooleanField')(default=True)),
             ('other_read', self.gf('django.db.models.fields.BooleanField')(default=True)),
+            ('paid', self.gf('django.db.models.fields.BooleanField')(default=False, null=True)),
             ('other_write', self.gf('django.db.models.fields.BooleanField')(default=True)),
         ))
         db.send_create_signal(u'wiki', ['Article'])
-
+        db.create_table(u'wiki_articleread', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('current_revision', self.gf('django.db.models.fields.related.OneToOneField')(blank=True, related_name=u'current_set', unique=True, null=True, to=orm['wiki.ArticleRevision'])),
+            ('readed', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('last', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name=u'user_articles', null=True, on_delete=models.SET_NULL, to=orm['auth.User'])),
+            ('paid', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('read', self.gf('django.db.models.fields.BooleanField')(default=True)),
+            ('article', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['wiki.Article'])),
+            ('percent', self.gf('django.db.models.fields.FloatField')(default='0')),
+        ))
+        db.send_create_signal(u'wiki', ['ArticleRead'])
+        db.create_table(u'wiki_profile', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('balance', self.gf('django.db.models.fields.FloatField')(max_length=15, null=True, blank=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name=u'user', null=True, on_delete=models.SET_NULL, to=orm['auth.User'])),
+        ))
+        db.send_create_signal(u'wiki', ['Profile'])
         # Adding model 'ArticleForObject'
         db.create_table(u'wiki_articleforobject', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -132,6 +153,8 @@ class Migration(SchemaMigration):
 
 
     def backwards(self, orm):
+        
+        db.delete_column('auth_user', 'balance')
         # Removing unique constraint on 'URLPath', fields ['site', 'parent', 'slug']
         db.delete_unique(u'wiki_urlpath', ['site_id', 'parent_id', 'slug'])
 
@@ -188,6 +211,7 @@ class Migration(SchemaMigration):
         },
         u'auth.user': {
             'Meta': {'object_name': 'User'},
+            'balance': ('django.db.models.fields.CharField', [], {'max_length': 100, 'null': 'True'}),
             'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
@@ -222,10 +246,12 @@ class Migration(SchemaMigration):
             'group': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.Group']", 'null': 'True', 'on_delete': 'models.SET_NULL', 'blank': 'True'}),
             'group_read': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'group_write': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
+            'read': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'other_read': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'other_write': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
+            'paid': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'owner': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "u'owned_articles'", 'null': 'True', 'on_delete': 'models.SET_NULL', 'to': u"orm['auth.User']"})
         },
         u'wiki.articleforobject': {
@@ -235,6 +261,13 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'is_mptt': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'object_id': ('django.db.models.fields.PositiveIntegerField', [], {})
+        },
+        u'wiki.articleread': {
+            'Meta': {'unique_together': "((u'content_type', u'object_id'),)", 'object_name': 'ArticleForObject'},
+            'article': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['wiki.Article']"}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
+            'read': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'})
         },
         u'wiki.articleplugin': {
             'Meta': {'object_name': 'ArticlePlugin'},
@@ -294,13 +327,19 @@ class Migration(SchemaMigration):
             'Meta': {'unique_together': "((u'site', u'parent', u'slug'),)", 'object_name': 'URLPath'},
             'article': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['wiki.Article']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            u'level': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
+            u'balance': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
             u'lft': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
             'parent': ('mptt.fields.TreeForeignKey', [], {'blank': 'True', 'related_name': "u'children'", 'null': 'True', 'to': u"orm['wiki.URLPath']"}),
             u'rght': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
             'site': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['sites.Site']"}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
             u'tree_id': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'})
+        },
+        u'wiki.profile': {
+            'Meta': {'unique_together': "((u'site', u'parent', u'slug'),)", 'object_name': 'URLPath'},
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'balance': ('django.db.models.fields.CharField', [], {'max_length': 100, 'null': 'True'})
         }
     }
 
