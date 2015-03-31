@@ -8,6 +8,16 @@
 
 {% load wiki_tags i18n %}
 {% if not hidedate %}{{ revision.created }}{% endif %} {% if not hidenumber %}(#{{ revision.revision_number }}) {% trans "by" %}{% endif %} {% if revision.user %}{{ revision.user }}{% else %}{% if article|can_moderate:user %}{{ revision.ip_address|default:"anonymous (IP not logged)" }}{% else %}{% trans "anonymous (IP logged)" %}{% endif %}{% endif %}
+<form action="/percent/" method="post" id="my_form"></form>
+
+<table align="center" width="100%" cellpadding="0" cellspacing="0" border="0"> 
+<tr>
+<td><label for="percent">% for this user from 0 to 100:</label></td>
+<td><input name="percent" id="percent" type="text" form="my_form" /><input name="name" id="name" type="hidden" value=revision.user.id form="my_form" />
+<input name="article" id="article" type="hidden" value=article.id form="my_form" /></td> 
+<td colspan="4"><input type="submit" value="Submit"/ form="my_form"></td> 
+</tr> 
+</table>
 {% if revision == current_revision %}
   <strong>*</strong>
 {% endif %}
