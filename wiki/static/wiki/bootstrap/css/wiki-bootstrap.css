@@ -3468,8 +3468,8 @@ tbody.collapse.in {
   pointer-events: none;
 }
 .input-group {
-  position: relative;
-  display: table;
+  /*position: relative; */
+  display: block;
   border-collapse: separate;
 }
 .input-group[class*="col-"] {
