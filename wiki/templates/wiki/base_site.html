@@ -40,6 +40,10 @@
                 <li class="sidebar-brand">
                     <a href="{% url 'wiki:root' %}"> Technology βιβλιοθήκη </a>
                 </li>
+              
+                <li>
+                    <a href="/_create/">Create article</a>
+                </li>
                 <li>
                     <form class="navbar-form pull-right-block-on-responsive" id="wiki-search-form" method="GET" action="{% url 'wiki:search' %}">
             <div class="input-group">
@@ -51,9 +55,6 @@
               </span>-->
             </div><!-- /input-group -->
           </form>
-                </li>
-                <li>
-                    <a href="/_create/">Create article</a>
                 </li>
                 <li>
                 {% if user.is_authenticated %}
