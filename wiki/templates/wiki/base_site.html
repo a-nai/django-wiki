@@ -72,41 +72,7 @@
    </div>
         
           
-          <div class="navbar-right">
-            {% if user.is_authenticated %}
-            <ul class="nav navbar-nav">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class="badge notification-cnt">0</span>
-                  {{ user }}
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a href="{% url 'wiki:logout' %}">
-                      <i class="fa fa-power-off"></i>
-                      {% trans "Log out" %}
-                    </a>
-                  </li>
-                  {% include "wiki/plugins/notifications/menubaritem.html" %}
-                </ul>
-              </li>
-            </ul>
-            {% else %}
-            <ul class="nav navbar-nav">
-              <li>
-                <a href="{% login_url as wiki_login_url %}{{ wiki_login_url }}">{% trans "Log in" %}</a>
-              </li>
-              <li>
-                <a href="{% url 'wiki:signup' %}">{% trans "Sign up" %}</a>
-              </li>
-            </ul>
-            {% endif %}
-          </div>
-          {% block wiki_header_navlinks %}
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/">{% trans "Home" %}</a></li>
-            <li><a href="https://github.com/benjaoming/django-wiki" target="_blank">{% trans "About" %}</a></li>
+          
           </ul>
           {% endblock %}
         </div>
