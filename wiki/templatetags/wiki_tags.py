@@ -79,6 +79,17 @@ def current_read(context, articleid):
     return ""#HttpResponse()
     
     
+@register.simple_tag(takes_context=True)
+def account_balance(context):
+    request = context['request']
+    #import pdb; pdb.set_trace()
+    try:
+     auther=auth_user.objects.filter(user_id=request.user.id)[0]
+     ba=auther.balance
+    except IndexError:
+     ba=8;
+    return ba#HttpResponse()
+    
 @register.inclusion_tag('wiki/includes/form.html', takes_context=True)
 def wiki_form(context, form_obj):
     if not isinstance(form_obj, BaseForm):
