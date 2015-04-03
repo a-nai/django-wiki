@@ -14,6 +14,7 @@ from django.utils.http import urlquote
 from six.moves import filter
 from myproject.models import WikiArticleread as articleread
 import datetime
+from models import AuthUser as auth_user
 
 register = template.Library()
 
@@ -84,7 +85,7 @@ def account_balance(context):
     request = context['request']
     #import pdb; pdb.set_trace()
     try:
-     auther=auth_user.objects.filter(user_id=request.user.id)[0]
+     auther=auth_user.objects.filter(id=request.user.id)[0]
      ba=auther.balance
     except IndexError:
      ba=8;
