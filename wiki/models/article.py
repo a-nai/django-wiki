@@ -267,7 +267,13 @@ class Articleread(models.Model):
         if self.current_revision:
             return self.current_revision
         obj_name = _('Article without content (%(id)d)') % {'id': self.id}
-        return str(obj_name)    
+        return str(obj_name)
+        
+    class Meta:
+        app_label = settings.APP_LABEL
+        get_latest_by = 'revision_number'
+        ordering = ('last',)
+        unique_together = ('article', 'revision_number')
         
 @python_2_unicode_compatible
 class ArticleForObject(models.Model):
