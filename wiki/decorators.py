@@ -133,6 +133,7 @@ def get_article(func=None, can_read=True, can_write=False,
                  user.save()
                  import types
                  user=articleread1.objects.filter(user_id=request.user.id, article_id=article.id)
+                 import pdb; pdb.set_trace()
                  if type(user) is list:
                   articleread1.objects.latest.delete()
                  elif type(user) is tuple:
