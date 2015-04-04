@@ -1,6 +1,6 @@
 {% load sekizai_tags i18n wiki_tags %}{% load url from future %}<!DOCTYPE html>
 {% if user.is_authenticated %}
-{{article.owner}} {{article.paid}}{{articleread.readed}}
+{{article.owner}} {{article.paid}}{{articleread.readed}} {{ article|can_read:user }}
 {% current_read article.id %}
 {% endif %}
 
