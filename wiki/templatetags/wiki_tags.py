@@ -12,7 +12,7 @@ from django.utils.safestring import mark_safe
 from django.template.defaultfilters import striptags
 from django.utils.http import urlquote
 from six.moves import filter
-from myproject.models import WikiArticleread as articleread
+from myproject.models import ModelsArticleread as articleread
 import datetime
 from myproject.models import AuthUser as auth_user
 
