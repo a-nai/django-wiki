@@ -123,14 +123,14 @@ def get_article(func=None, can_read=True, can_write=False,
             if urlpath.article:
                 # urlpath is already smart about prefetching items on article
                 # (like current_revision), so we don't have to
+                article = urlpath.article
+                articlesread = models.Articleread.objects
                 try:
                  articleread1.objects.filter(user_id=request.user.id, article_id=article.id)[0]
                 except:
                  global article.id
                  user=articleread1.objects.create(read='True',user_id=request.user.id,article_id=article.id, paid='False',readed=datetime.datetime.now(),last=datetime.datetime.now())    
                  user.save()
-                article = urlpath.article
-                articlesread = models.Articleread.objects
                 #import pdb; pdb.set_trace()
                 articleread = get_object_or_404(articlesread, article_id=article.id)
             else:
