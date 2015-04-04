@@ -273,7 +273,7 @@ class Articleread(models.Model):
         app_label = settings.APP_LABEL
         get_latest_by = 'article'
         ordering = ('last',)
-        unique_together = ('article')
+    
         
 @python_2_unicode_compatible
 class ArticleForObject(models.Model):
