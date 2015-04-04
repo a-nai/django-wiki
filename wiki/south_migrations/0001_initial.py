@@ -35,7 +35,7 @@ class Migration(SchemaMigration):
             ('paid', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('read', self.gf('django.db.models.fields.BooleanField')(default=True)),
             ('article', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['wiki.Article'])),
-            ('percent', self.gf('django.db.models.fields.FloatField')(default='0')),
+            ('percent', self.gf('django.db.models.fields.FloatField')(default='0', null=True)),
         ))
         db.create_table(u'models_articleread', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -46,7 +46,7 @@ class Migration(SchemaMigration):
             ('paid', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('read', self.gf('django.db.models.fields.BooleanField')(default=True)),
             ('article', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['wiki.Article'])),
-            ('percent', self.gf('django.db.models.fields.FloatField')(default='0')),
+            ('percent', self.gf('django.db.models.fields.FloatField')(default='0', null=True)),
         ))
         db.send_create_signal(u'wiki', ['ArticleRead'])
         db.create_table(u'wiki_profile', (
