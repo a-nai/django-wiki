@@ -124,7 +124,8 @@ def get_article(func=None, can_read=True, can_write=False,
                 # (like current_revision), so we don't have to
                 article = urlpath.article
                 articlesread = models.Articleread.objects
-                articleread = get_list_or_404(articlesread, article_id="1")
+                import pdb; pdb.set_trace()
+                articleread = get_object_or_404(articlesread, article_id=article_id)
             else:
                 # Be robust: Somehow article is gone but urlpath exists...
                 # clean up
@@ -143,7 +144,7 @@ def get_article(func=None, can_read=True, can_write=False,
             articles = models.Article.objects
             articlesread = models.Articleread.objects
             article = get_object_or_404(articles, id=article_id)
-            articleread = get_object_or_404(articlesread, id=article_id)
+            articleread = get_object_or_404(articlesread, article_id=article_id)
             try:
                 urlpath = models.URLPath.objects.get(articles__article=article)
             except models.URLPath.DoesNotExist as noarticle:
