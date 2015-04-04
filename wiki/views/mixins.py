@@ -12,9 +12,10 @@ class ArticleMixin(TemplateResponseMixin):
     decorator) and puts this information as an instance attribute and in the
     template context."""
 
-    def dispatch(self, request, article, *args, **kwargs):
+    def dispatch(self, request, article, articleread, *args, **kwargs):
         self.urlpath = kwargs.pop('urlpath', None)
         self.article = article
+        self.articleread = articleread
         self.children_slice = []
         if settings.SHOW_MAX_CHILDREN > 0:
             try:
