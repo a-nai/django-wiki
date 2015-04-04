@@ -124,7 +124,7 @@ def get_article(func=None, can_read=True, can_write=False,
                 # (like current_revision), so we don't have to
                 article = urlpath.article
                 articlesread = models.Articleread.objects
-                articleread = get_object_or_404(articlesread, id=article_id)
+                articleread = get_object_or_404(articlesread, id="1")
             else:
                 # Be robust: Somehow article is gone but urlpath exists...
                 # clean up
