@@ -180,7 +180,7 @@ def get_article(func=None, can_read=True, can_write=False,
 
         kwargs['urlpath'] = urlpath
 
-        return func(request, article, *args, **kwargs)
+        return func(request, article, articleread, *args, **kwargs)
 
     if func:
         return wrapper
