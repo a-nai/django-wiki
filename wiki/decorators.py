@@ -138,8 +138,9 @@ def get_article(func=None, can_read=True, can_write=False,
             # caching is good, and fall back to grabbing it from
             # Article.objects if not
             articles = models.Article.objects
-
+            articlesread = models.Articleread.objects
             article = get_object_or_404(articles, id=article_id)
+            articleread = get_object_or_404(articlesread, id=article_id)
             try:
                 urlpath = models.URLPath.objects.get(articles__article=article)
             except models.URLPath.DoesNotExist as noarticle:
