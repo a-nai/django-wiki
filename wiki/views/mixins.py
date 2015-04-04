@@ -33,6 +33,7 @@ class ArticleMixin(TemplateResponseMixin):
     def get_context_data(self, **kwargs):
         kwargs['urlpath'] = self.urlpath
         kwargs['article'] = self.article
+        kwargs['articleread'] = self.articleread
         kwargs['article_tabs'] = registry.get_article_tabs()
         kwargs['children_slice'] = self.children_slice[:20]
         kwargs['children_slice_more'] = len(self.children_slice) > 20
