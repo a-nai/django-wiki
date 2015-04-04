@@ -136,7 +136,7 @@ def get_article(func=None, can_read=True, can_write=False,
                  #import pdb; pdb.set_trace()
                  if len(user)==2:
                   articleread1.objects.latest('id').delete()
-                 user=articleread1.objects.filter(user_id=request.user.id, article_id=article.id).update(paid='0');
+                 user=articleread1.objects.latest('id').update(paid='0');
                 #import pdb; pdb.set_trace()
                 articleread = get_object_or_404(articlesread, article_id=article.id)
             else:
