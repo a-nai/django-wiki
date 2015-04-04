@@ -271,9 +271,9 @@ class Articleread(models.Model):
         
     class Meta:
         app_label = settings.APP_LABEL
-        get_latest_by = 'current_revision'
+        get_latest_by = 'article'
         ordering = ('last',)
-        unique_together = ('article', 'current_revision')
+        unique_together = ('article')
         
 @python_2_unicode_compatible
 class ArticleForObject(models.Model):
