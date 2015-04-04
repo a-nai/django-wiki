@@ -233,7 +233,7 @@ class Articleread(models.Model):
 
     current_revision1 = models.OneToOneField(
         'ArticleRevision', verbose_name=_('current revision1'),
-        blank=True, null=True, related_name='current_set',
+        blank=True, null=True, related_name='current_set1',
         help_text=_(
             'The revision being displayed for this article. If you need to do a roll-back, simply change the value of this field.'),)
 
