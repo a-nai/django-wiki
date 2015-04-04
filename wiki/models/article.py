@@ -227,6 +227,44 @@ class Article(models.Model):
 
 
 @python_2_unicode_compatible
+class Articleread(models.Model):
+
+    objects = managers.ArticleManager()
+
+    current_revision = models.OneToOneField(
+        'ArticleRevision', verbose_name=_('current revision'),
+        blank=True, null=True, related_name='current_set',
+        help_text=_(
+            'The revision being displayed for this article. If you need to do a roll-back, simply change the value of this field.'),)
+
+    readed = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('created'),
+    )
+    last = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_('modified'),
+        help_text=_('Article properties last modified'))
+
+    user = models.ForeignKey(
+        compat.USER_MODEL, verbose_name=_('owner'),
+        blank=True, null=True, related_name='owned_articles',
+        help_text=_(
+            'The owner of the article, usually the creator. The owner always has both read and write access.'),
+        on_delete=models.SET_NULL)
+
+    paid = models.BooleanField(
+        default=False,
+        verbose_name=_('paid read access'))
+        
+    article = models.ForeignKey('Article', on_delete=models.CASCADE)
+    
+    percent = models.FloatField(
+        default="0",
+        verbose_name=_('paid read access'))
+        
+        
+@python_2_unicode_compatible
 class ArticleForObject(models.Model):
 
     objects = managers.ArticleFkManager()
