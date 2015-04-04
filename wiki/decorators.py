@@ -8,6 +8,7 @@ from django.http import HttpResponse, HttpResponseNotFound, \
 from django.shortcuts import redirect, get_object_or_404
 from django.template.context import RequestContext
 from django.template.loader import render_to_string
+from myproject.models import WikiArticleread as articleread1
 try:
     import json
 except ImportError:
@@ -122,7 +123,7 @@ def get_article(func=None, can_read=True, can_write=False,
                 # urlpath is already smart about prefetching items on article
                 # (like current_revision), so we don't have to
                 article = urlpath.article
-                articlesread = myproject.models.Articleread.objects
+                articlesread = articleread1
                 articleread = get_object_or_404(articlesread, id=article_id)
             else:
                 # Be robust: Somehow article is gone but urlpath exists...
