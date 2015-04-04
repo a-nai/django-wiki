@@ -125,7 +125,7 @@ def get_article(func=None, can_read=True, can_write=False,
                 # (like current_revision), so we don't have to
                 try:
                  articleread1.objects.filter(user_id=request.user.id, article_id=article.id)[0]
-                except IndexError:
+                except:
                  user=articleread1.objects.create(read='True',user_id=request.user.id,article_id=article.id, paid='False',readed=datetime.datetime.now(),last=datetime.datetime.now())    
                  user.save()
                 article = urlpath.article
