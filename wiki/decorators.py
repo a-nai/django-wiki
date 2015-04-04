@@ -128,7 +128,7 @@ def get_article(func=None, can_read=True, can_write=False,
                 try:
                  articleread1.objects.filter(user_id=request.user.id, article_id=article.id)[0]
                 except:
-                 user=articleread1.objects.create(read='True',user_id=request.user.id,article_id=article.id, paid='False',readed=datetime.datetime.now(),last=datetime.datetime.now())    
+                 user=articleread1.objects.create(read='1',user_id=request.user.id,article_id=article.id, paid='0',readed=datetime.datetime.now(),last=datetime.datetime.now())    
                  user.save()
                 #import pdb; pdb.set_trace()
                 articleread = get_object_or_404(articlesread, article_id=article.id)
