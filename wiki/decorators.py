@@ -134,9 +134,7 @@ def get_article(func=None, can_read=True, can_write=False,
                  import types
                  user=articleread1.objects.filter(user_id=request.user.id, article_id=article.id)
                  import pdb; pdb.set_trace()
-                 if type(user) is list:
-                  articleread1.objects.latest.delete()
-                 elif type(user) is tuple:
+                 if len(user)==2:
                   articleread1.objects.latest.delete()
                 #import pdb; pdb.set_trace()
                 articleread = get_object_or_404(articlesread, article_id=article.id)
