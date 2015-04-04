@@ -231,7 +231,7 @@ class Articleread(models.Model):
 
     objects = managers.ArticleManager()
 
-    current_revision = models.OneToOneField(
+    current_revision1 = models.OneToOneField(
         'ArticleRevision', verbose_name=_('current revision1'),
         blank=True, null=True, related_name='current_set',
         help_text=_(
