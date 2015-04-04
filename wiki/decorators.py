@@ -8,7 +8,7 @@ from django.http import HttpResponse, HttpResponseNotFound, \
 from django.shortcuts import redirect, get_object_or_404
 from django.template.context import RequestContext
 from django.template.loader import render_to_string
-from myproject.models import WikiArticleread as articleread1
+import myproject.models as wiki
 try:
     import json
 except ImportError:
