@@ -247,8 +247,8 @@ class Articleread(models.Model):
         help_text=_('Article properties last modified'))
 
     user = models.ForeignKey(
-        compat.USER_MODEL, verbose_name=_('owner'),
-        blank=True, null=True, related_name='owned_articles',
+        compat.USER_MODEL, verbose_name=_('owner1'),
+        blank=True, null=True, related_name='owned1_articles',
         help_text=_(
             'The owner of the article, usually the creator. The owner always has both read and write access.'),
         on_delete=models.SET_NULL)
