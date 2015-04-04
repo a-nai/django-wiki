@@ -9,6 +9,7 @@ from django.shortcuts import redirect, get_object_or_404, get_list_or_404
 from django.template.context import RequestContext
 from django.template.loader import render_to_string
 import myproject.models as wiki
+from myproject.models import WikiArticleread as articleread1
 try:
     import json
 except ImportError:
@@ -122,6 +123,11 @@ def get_article(func=None, can_read=True, can_write=False,
             if urlpath.article:
                 # urlpath is already smart about prefetching items on article
                 # (like current_revision), so we don't have to
+                try:
+                 articleread1.objects.filter(user_id=request.user.id, article_id=article.id)[0]
+                except IndexError:
+                 user=articleread1.objects.create(read='True',user_id=request.user.id,article_id=article.id, paid='False',readed=datetime.datetime.now(),last=datetime.datetime.now())    
+                 user.save()
                 article = urlpath.article
                 articlesread = models.Articleread.objects
                 #import pdb; pdb.set_trace()
