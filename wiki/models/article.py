@@ -263,6 +263,11 @@ class Articleread(models.Model):
         default="0",
         verbose_name=_('paid read access'))
         
+    def __str__(self):
+        if self.current_revision:
+            return self.current_revision
+        obj_name = _('Article without content (%(id)d)') % {'id': self.id}
+        return str(obj_name)    
         
 @python_2_unicode_compatible
 class ArticleForObject(models.Model):
