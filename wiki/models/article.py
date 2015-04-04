@@ -57,6 +57,9 @@ class Article(models.Model):
     group_read = models.BooleanField(
         default=True,
         verbose_name=_('group read access'))
+    paid = models.BooleanField(
+        default=False,
+        verbose_name=_('paid read access'))
     group_write = models.BooleanField(
         default=True,
         verbose_name=_('group write access'))
