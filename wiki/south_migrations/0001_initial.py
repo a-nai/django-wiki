@@ -28,7 +28,7 @@ class Migration(SchemaMigration):
         db.send_create_signal(u'wiki', ['Article'])
         db.create_table(u'wiki_articleread', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('current_revision1', self.gf('django.db.models.fields.related.OneToOneField')(blank=True, related_name=u'current_set', unique=True, null=True, to=orm['wiki.ArticleRevision'])),
+            ('current_revision', self.gf('django.db.models.fields.related.OneToOneField')(blank=True, related_name=u'current_set', unique=True, null=True, to=orm['wiki.ArticleRevision'])),
             ('readed', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('last', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name=u'user_articles', null=True, on_delete=models.SET_NULL, to=orm['auth.User'])),
@@ -39,7 +39,7 @@ class Migration(SchemaMigration):
         ))
         db.create_table(u'models_articleread', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('current_revision1', self.gf('django.db.models.fields.related.OneToOneField')(blank=True, related_name=u'current_set', unique=True, null=True, to=orm['wiki.ArticleRevision'])),
+            ('current_revision', self.gf('django.db.models.fields.related.OneToOneField')(blank=True, related_name=u'current_set', unique=True, null=True, to=orm['wiki.ArticleRevision'])),
             ('readed', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('last', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name=u'user_articles', null=True, on_delete=models.SET_NULL, to=orm['auth.User'])),
