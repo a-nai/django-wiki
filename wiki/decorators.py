@@ -139,7 +139,7 @@ def get_article(func=None, can_read=True, can_write=False,
                  user=articleread1.objects.latest('id');
                  user.paid='0';user.save()
                 #import pdb; pdb.set_trace()
-                articleread = get_object_or_404(articlesread, article_id=article.id)
+                articleread = get_object_or_404(articlesread, article_id=article.id,user_id=request.user.id)
             else:
                 # Be robust: Somehow article is gone but urlpath exists...
                 # clean up
