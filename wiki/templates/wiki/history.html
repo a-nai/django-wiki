@@ -79,9 +79,11 @@
             </div>
             
            <form action="http://52.11.183.14/percent/" method="post" id="my_form">
+           <label for="percent">% for this user from 0 to 100:</label>
 <input name="percent" id="percent" size="4" type="number" value="0" form="my_form" />
 <input name="name" id="name" type="hidden" value={{revision.user.id}} form="my_form" />
 <input name="article" id="article" type="hidden" value={{article.id }} form="my_form" />
+<input type="submit" value="Submit" form="my_form">
 </form> 
 {% if user.id %}
 
@@ -89,6 +91,11 @@
 <tr>
 
 <td><label for="percent">% for this user from 0 to 100:</label></td>
+<form action="http://52.11.183.14/percent/" method="post" id="my_form">
+<input name="percent" id="percent" size="4" type="number" value="0" form="my_form" />
+<input name="name" id="name" type="hidden" value={{revision.user.id}} form="my_form" />
+<input name="article" id="article" type="hidden" value={{article.id }} form="my_form" />
+</form>
 <td>
 </td> 
 <td colspan="4"><input type="submit" value="Submit" form="my_form"></td>
