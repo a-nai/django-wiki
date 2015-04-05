@@ -81,8 +81,8 @@
                 </li>
                 {% if article|can_write:user and not article.current_revision.locked %}
                 <li>
-                    <a href="{% url 'wiki:edit' article_id=article.id path=urlpath.path %}">Edit</a>
-                    <span class="fa fa-edit"></span>
+                    <a href="{% url 'wiki:edit' article_id=article.id path=urlpath.path %}"><span class="fa fa-edit"></span>Edit</a>
+                    
                 </li>
                 {% endif %}
                 <li>
