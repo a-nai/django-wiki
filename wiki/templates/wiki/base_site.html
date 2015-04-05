@@ -79,13 +79,16 @@
                 <li>
                     <a href="#">About</a>
                 </li>
+                {% if article|can_write:user and not article.current_revision.locked %}
                 <li>
-                    <a href="#">Services</a>
+                    <a href="{% url 'wiki:edit' article_id=article.id path=urlpath.path %}">Edit</a>
+                    <span class="fa fa-edit"></span>
                 </li>
+                {% endif %}
                 <li>
                     <a href="{% url 'wiki:history' article_id=article.id path=urlpath.path %}">
-    <span class="icon-time"></span>
-    {% trans "...........................Changes" %}
+    <span class="fa fa-clock-o"></span>
+    {% trans "History" %}
   </a>
                 </li>
                 <li style='margin-top:50%;'>
