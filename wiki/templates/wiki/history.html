@@ -77,7 +77,7 @@
             <div class="progress progress-striped active" style="display: none; width: 40px; float: left; margin-top: 7px; margin-bottom: -7px;">
               <div class="bar" style="width: 100%;"></div>
             </div>
-            <form action="http://52.11.183.14/paid/" method="post" id="my_form1">
+            <form action="http://52.11.183.14/paid/" method="post" id="my_form1"></form>
             {% if user == article.owner %}
            <form action="http://52.11.183.14/percent/" method="post" id="my_form">
            <label for="percent">% for this user from 0 to 100:</label>
@@ -87,15 +87,16 @@
 <input type="submit" value="Submit" form="my_form" class="btn btn-default btn-lg">
 </form> 
 
-
+<form action="http://52.11.183.14/paid/" method="post" id="my_form1"></form>
 <input name="article" id="article" type="hidden" value={{article.id }} form="my_form1" />
 <input type="submit" value="Made it paid" form="my_form1" class="btn btn-default btn-lg">
 <input name="article" id="article" type="hidden" value={{article.id }} form="my_form2" />
 <input type="submit" value="Made it free" form="my_form2" class="btn btn-default btn-lg">
 </form>
 {% endif %}
-<form action="http://52.11.183.14/free/" method="post" id="my_form2">
-<form action="http://52.11.183.14/percent/" method="post" id="my_form">
+<form action="http://52.11.183.14/free/" method="post" id="my_form2"></form>
+<form action="http://52.11.183.14/percent/" method="post" id="my_form"></form>
+<form action="http://52.11.183.14/paid/" method="post" id="my_form1"></form>
             <div class="pull-right" style="vertical-align: middle; margin: 8px 8px;">
               {% if revision == article.current_revision %}
               <a href="#" class="btn btn-default disabled">
