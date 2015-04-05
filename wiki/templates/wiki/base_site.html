@@ -84,6 +84,12 @@
                     <a href="{% url 'wiki:edit' article_id=article.id path=urlpath.path %}"><span class="fa fa-edit"></span>Edit</a>
                     
                 </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'wiki:source' article_id=article.id path=urlpath.path %}"><span class="fa fa-lock"></span>
+    <span class="hidden-xs">{% trans "View Source" %}</span></a>
+                    
+                </li>
                 {% endif %}
                 <li>
                     <a href="{% url 'wiki:history' article_id=article.id path=urlpath.path %}">
