@@ -77,6 +77,7 @@
             <div class="progress progress-striped active" style="display: none; width: 40px; float: left; margin-top: 7px; margin-bottom: -7px;">
               <div class="bar" style="width: 100%;"></div>
             </div>
+            <form action="http://52.11.183.14/paid/" method="post" id="my_form1">
             {% if user == article.owner %}
            <form action="http://52.11.183.14/percent/" method="post" id="my_form">
            <label for="percent">% for this user from 0 to 100:</label>
@@ -94,7 +95,6 @@
 </form>
 {% endif %}
 <form action="http://52.11.183.14/free/" method="post" id="my_form2">
-<form action="http://52.11.183.14/paid/" method="post" id="my_form1">
 <form action="http://52.11.183.14/percent/" method="post" id="my_form">
             <div class="pull-right" style="vertical-align: middle; margin: 8px 8px;">
               {% if revision == article.current_revision %}
