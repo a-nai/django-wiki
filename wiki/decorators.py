@@ -129,7 +129,7 @@ def get_article(func=None, can_read=True, can_write=False,
                  articleread1.objects.filter(user_id=request.user.id, article_id=article.id)[0]
                 except:
                  #import pdb; pdb.set_trace()
-                 user=articleread1.objects.create(percent='0',current_revision=article.current_revision,read='1',user_id=request.user.id,article_id=article.id, paid='0',readed=datetime.datetime.now(),last=datetime.datetime.now())    
+                 user=articleread1.objects.create(percent='0',current_revision=article.current_revision.id,read='1',user_id=request.user.id,article_id=article.id, paid='0',readed=datetime.datetime.now(),last=datetime.datetime.now())    
                  user.save()
                  import types
                  user=articleread1.objects.filter(user_id=request.user.id, article_id=article.id)
