@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block wiki_contents %}
-
+{% if not article.paid or articleread.paid == True %}
   <div id="article-container">
     <ul class="nav nav-pills" id="article-menu">
       <li class="pull-left" id="article-title-li">
@@ -30,6 +30,12 @@
     <div>
       {% block wiki_contents_tab %}
       {% endblock %}
+ {% else %}
+        <form action="/buy/" align="center" method="post">
+        <input type="hidden" name="id" value={{ article.id }}>
+        <input type="submit" value="Buy it 1$" class="btn btn-primary btn-lg >
+        </form>
+{% endif %}
     </div>
   </div>
 
