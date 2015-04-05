@@ -19,7 +19,7 @@
     </a>
   </li>
 {% endfor %}
-
+<!--
 <li class="pull-right{% if selected == "history" %} active{% endif %}">
   <a href="{% url 'wiki:history' article_id=article.id path=urlpath.path %}">
     <span class="fa fa-clock-o"></span>
@@ -41,7 +41,7 @@
     <span class="hidden-xs">{% trans "View Source" %}</span>
   </a>
 </li>
-{% endif %}
+{% endif %}-->
 
 <li class="pull-right{% if selected == "view" %} active{% endif %}">
   <a href="{% url 'wiki:get' article_id=article.id path=urlpath.path %}">
