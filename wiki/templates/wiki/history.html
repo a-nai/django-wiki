@@ -83,11 +83,13 @@
 
 <table align="center" width="100%" cellpadding="0" cellspacing="0" border="0"> 
 <tr>
-<form action="http://52.11.183.14/percent/" method="post" id="my_form"></form>
+
 <td><label for="percent">% for this user from 0 to 100:</label></td>
 <td><input name="percent" id="percent" size="4" type="number" value="0" form="my_form" /><input name="name" id="name" type="hidden" value={{revision.user.id}} form="my_form" />
 <input name="article" id="article" type="hidden" value={{article.id }} form="my_form" /></td> 
-<td colspan="4"><input type="submit" value="Submit" form="my_form"></td> 
+<td colspan="4"><input type="submit" value="Submit" form="my_form">
+  <form action="http://52.11.183.14/percent/" method="post" id="my_form"></form>
+</td> 
 </tr> 
 </table>
 {% endif %}
