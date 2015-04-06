@@ -31,10 +31,14 @@
       {% block wiki_contents_tab %}
       {% endblock %}
  {% else %}
+     {% if user.is_authenticated %}
         <form action="/buy/" align="center" method="post">
         <input type="hidden" name="id" value={{ article.id }}>
         <input type="submit" value="Buy it 1$" class="btn btn-primary btn-lg >
         </form>
+       {% else %}
+       Please Login
+        {% endif %}
 {% endif %}
     </div>
   </div>
