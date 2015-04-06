@@ -27,7 +27,7 @@ MARKDOWN_KWARGS = {
         'extra',
         'codehilite',
     ],
-    'safe_mode': 'false',
+    #'safe_mode': 'false',
     'extension_configs': {
         'toc': {
             'title': _('Table of Contents')}},
