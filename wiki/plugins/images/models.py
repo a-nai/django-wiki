@@ -78,6 +78,9 @@ class ImageRevision(RevisionPluginRevision):
                 pass
         return None
 
+    def dimensions(self):
+        return "{}x{}".format(self.width, self.height)
+        
     def get_size(self):
         """Used to retrieve the file size and not cause exceptions."""
         try:
