@@ -82,7 +82,7 @@ class ImageRevision(RevisionPluginRevision):
             try:
                 #path1=self.image.path.split("/")[:-1]
                 #path1=.split("/")
-                return self.image.path[5:]
+                return self.image.path[17:]
             except OSError:
                 pass
         return None
