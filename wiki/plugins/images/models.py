@@ -69,7 +69,6 @@ class ImageRevision(RevisionPluginRevision):
 
     width = models.SmallIntegerField(blank=True, null=True)
     height = models.SmallIntegerField(blank=True, null=True)
-    path = self.image.path.split("/")[:-1];
     def get_filename(self):
         if self.image:
             try:
@@ -78,6 +77,14 @@ class ImageRevision(RevisionPluginRevision):
                 pass
         return None
 
+    def path(self):
+        if self.image:
+            try:
+                return self.image.path.split('/')[-1]
+            except OSError:
+                pass
+        return None
+        
     def dimensions(self):
         return "{}x{}".format(self.width, self.height)
         
