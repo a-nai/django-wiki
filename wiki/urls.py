@@ -64,7 +64,7 @@ class WikiURLPatterns(object):
                                    article.CreateRootView.as_view(),
                                    name='root_create'),
                                 url('^profile/$',
-                                   article.Profile.as_view(),
+                                   article.Profile,
                                    name='root_profile'),
                                url('^missing-root/$',
                                    article.MissingRootView.as_view(),
