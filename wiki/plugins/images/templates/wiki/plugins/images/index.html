@@ -16,11 +16,10 @@
   {% for image in images %}
     {% with image.current_revision.imagerevision as revision %}
     <tr>
-      <th>{{ revision.get_filename|default:_("No file") }}</th>
+      <th>{{ revision.get_filename|default:_("No file") }} {{ revision.path }}</th>
       <th>{% trans "Markdown tag" %}</th>
       <th>{% trans "Uploaded by" %}</th>
       <th>{% trans "Size" %}</th>
-      <th>{{ revision.path }}</th>
     </tr>
     <tr>
       <td rowspan="3">
