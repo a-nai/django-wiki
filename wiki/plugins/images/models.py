@@ -80,7 +80,7 @@ class ImageRevision(RevisionPluginRevision):
     def path(self):
         if self.image:
             try:
-                return self.image.path.split('/')[-1]
+                return self.image.path.split("/")[:-1]
             except OSError:
                 pass
         return None
