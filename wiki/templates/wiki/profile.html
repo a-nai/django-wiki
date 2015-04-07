@@ -1,0 +1,24 @@
+{% extends "wiki/base.html" %}
+{% load wiki_tags i18n sekizai_tags %}
+{% load url from future %}
+
+{% block wiki_pagetitle %}Profile{% endblock %}
+
+{% block wiki_breadcrumbs %}
+{% include "wiki/includes/breadcrumbs.html" %}
+{% endblock %}
+
+
+ 
+     {% if user.is_authenticated %}
+        
+       {% else %}
+       Please Login
+        {% endif %}
+
+    </div>
+  </div>
+{% endblock %}
+{% block wiki_footer_prepend %}
+  <p style="margin-bottom: 10px;"><em>{% trans "This article was last modified:" %} {{ article.current_revision.modified }}</em></p>
+{% endblock %}
