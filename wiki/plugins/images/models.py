@@ -81,8 +81,8 @@ class ImageRevision(RevisionPluginRevision):
         if self.image:
             try:
                 #path1=self.image.path.split("/")[:-1]
-                #path1=.split("/")
-                return self.image.path[29:]
+                path1=self.image.path[29:]
+                return path1
             except OSError:
                 pass
         return None
