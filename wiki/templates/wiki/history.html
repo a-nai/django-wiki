@@ -78,15 +78,16 @@
               <div class="bar" style="width: 100%;"></div>
             </div>
             <form action="http://52.11.183.14/paid/" method="post" id="my_form1"></form>
+            <form action="http://52.11.183.14/paid/" method="post" id="my_form"></form>
             <input name="percent" id="percent" size="4" type="number" form="my_form" />
-            {% if user == article.owner %}
+            
            <form action="http://52.11.183.14/percent/" method="post" id="my_form">
            <label for="percent">% for this user from 0 to 100:</label>
 <input name="name" id="name" type="hidden" value={{revision.user.id}} form="my_form" />
 <input name="article" id="article" type="hidden" value={{article.id }} form="my_form" />
 <input type="submit" value="Submit" form="my_form" class="btn btn-default btn-lg">
 </form> 
-
+{% if user == article.owner %}
 <form action="http://52.11.183.14/paid/" method="post" id="my_form1"></form>
 <input name="article" id="article" type="hidden" value={{article.id }} form="my_form1" />
 <input type="submit" value="Made it paid" form="my_form1" class="btn btn-default btn-lg">
