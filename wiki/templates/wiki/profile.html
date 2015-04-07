@@ -11,7 +11,8 @@
 
  
      {% if user.is_authenticated %}
-        {% profiles %}
+        {% for p in profiles %}
+         {{p.name}}
        {% else %}
        Please Login
         {% endif %}
