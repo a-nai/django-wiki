@@ -70,7 +70,7 @@ def Profile(request):
      auther=auth_user.objects.filter(id=prof1.owner_id)[0]
      profile='http://52.11.183.14/'+prof2.slug
      profiles.append(profile)
-    c = Context({'profiles': profiles})
+    c = RequestContext(request,{'profiles': profiles})
     return HttpResponse(t.render(c),
         content_type="application/xhtml+xml")
         
