@@ -16,11 +16,6 @@
     <link href="{{ STATIC_URL }}wiki/bootstrap/css/wiki-bootstrap.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}wiki/bootstrap/css/simple-sidebar.css" rel="stylesheet">
         
-    
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
 
   </head>
 
@@ -57,12 +52,7 @@
                 <li>----------------------
                 </li>
                 <li>
-                
-                {% if user.is_authenticated %}
-                 {{ user.last_name }} {% account_balance %}
-                {% else %}
-                   <a href="http://52.11.183.14/simple/login/fb"><img style="height:30px;" src="http://upload.wikimedia.org/wikipedia/commons/c/c2/F_icon.svg"> Facebook</a>
-                {% endif %}
+            
                 </li>
                 <li>----------------------</li>
                 <li></li>
