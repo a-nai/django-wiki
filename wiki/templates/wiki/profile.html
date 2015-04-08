@@ -1,3 +1,4 @@
+{% load sekizai_tags i18n wiki_tags %}{% load url from future %}
 <!DOCTYPE html>
 
 <html lang="en">
@@ -6,6 +7,7 @@
     <link href="http://52.11.183.14/static/wiki/bootstrap/css/wiki-bootstrap.css" type="text/css" rel="stylesheet"/>
     <link href="http://52.11.183.14/static/wiki/bootstrap/css/simple-sidebar.css" type="text/css" rel="stylesheet"/>
     <title> Profile - Technology βιβλιοθήκη </title>
+    {% render_block "css" %}
   </head>
 
   <body>
