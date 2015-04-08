@@ -1,14 +1,128 @@
-{% extends "wiki/base.html" %}
-{% load wiki_tags i18n sekizai_tags %}
-{% load url from future %}
+{% load sekizai_tags i18n wiki_tags %}{% load url from future %}<!DOCTYPE html>
+{% if user.is_authenticated %}
 
-{% block wiki_pagetitle %}Profile{% endblock %}
+{% endif %}
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block wiki_pagetitle %}{% endblock %}{% block wiki_site_title %} Profile - Technology βιβλιοθήκη{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="www.django-wiki.org">
+
+    <!-- Le styles -->
+    <link href="{{ STATIC_URL }}wiki/bootstrap/css/wiki-bootstrap.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}wiki/bootstrap/css/simple-sidebar.css" rel="stylesheet">
+        
+    
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    {% block wiki_body %}
+    
+    {% block wiki_navbar %}
+  <div>
+     <!-- <div class="container"> -->
+        <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="{% url 'wiki:root' %}"> Technology βιβλιοθήκη </a>
+                </li>
+              
+                <li>
+                    <a href="/_create/">Create article</a>
+                </li>
+                <li>
+                    <form class="navbar-form pull-right-block-on-responsive" id="wiki-search-form" method="GET" action="{% url 'wiki:search' %}">
+            <div class="input-group">
+              <input type="search" class="form-control search-query" name="q" placeholder="{% trans "....Search...." %}" />
+              <!--<span class="input-group-btn">
+               <button class="btn btn-default" type="button">
+                
+                </button>
+              </span>-->
+            </div><!-- /input-group -->
+          </form>
+                </li>
+                <li>----------------------
+                </li>
+                <li>
+                
+                {% if user.is_authenticated %}
+                 {{ user.last_name }} {% account_balance %}
+                {% else %}
+                   <a href="http://52.11.183.14/simple/login/fb"><img style="height:30px;" src="http://upload.wikimedia.org/wikipedia/commons/c/c2/F_icon.svg"> Facebook</a>
+                {% endif %}
+                </li>
+                <li>----------------------</li>
+                <li></li>
+                {% if user.is_authenticated %}
+                 <li>
+                    <a href="{% url 'wiki:logout' %}">
+                      <i class="icon-off"></i>
+                      {% trans "Log out" %}
+                    </a>
+                  </li>
+                {% endif %}
+                <li>
+                    <a href="#">About</a>
+                </li>
+                {% if article|can_write:user and not article.current_revision.locked %}
+                <li>
+                    <a href="{% url 'wiki:edit' article_id=article.id path=urlpath.path %}"><span class="fa fa-edit"></span>Edit</a>
+                    
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'wiki:source' article_id=article.id path=urlpath.path %}"><span class="fa fa-lock"></span>
+    <span class="hidden-xs">{% trans "View Source" %}</span></a>
+                    
+                </li>
+                {% endif %}
+                <li>
+                    <a href="{% url 'wiki:history' article_id=article.id path=urlpath.path %}">
+    <span class="fa fa-clock-o"></span>
+    {% trans "History" %}
+  </a>
+                </li>
+                <li style='margin-top:50%;'>
+                {% if user.is_authenticated %}
+                 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                 <input id="id_business" name="business" type="hidden" value="aaronlivni2@mail.com" /><input id="id_amount" name="amount" type="hidden" value="1.00" /><input id="id_item_name" name="item_name" type="hidden" value="Wiki money" /><input id="id_notify_url" name="notify_url" type="hidden" value="http://52.11.183.14/notify/" /><input id="id_cancel_return" name="cancel_return" type="hidden" value="http://52.11.183.14/cancel/" /><input id="id_return_url" name="return" type="hidden" value="http://52.11.183.14/return/" /><input id="id_custom" name="custom" type="hidden" value={{ user.id }} /><input id="id_invoice" name="invoice" type="hidden" value={% now "Hiu" %} /><input id="id_cmd" name="cmd" type="hidden" value="_xclick" /><input id="id_charset" name="charset" type="hidden" value="utf-8" /><input id="id_currency_code" name="currency_code" type="hidden" value="USD" /><input id="id_no_shipping" name="no_shipping" type="hidden" value="1" />
+                 <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Buy it Now" />
+                 </form>
+                {% endif %}
+                </li>
+              
+        
+   
+        
+          
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+
+
 
 {% block wiki_breadcrumbs %}
 {% include "wiki/includes/breadcrumbs.html" %}
 {% endblock %}
 
-
+<div class="container">
  
      {% if user.is_authenticated %}
         {% for p in profiles %}
@@ -18,7 +132,7 @@
        Please Login
         {% endif %}
 
-    
+    </div>
 {% block wiki_footer_prepend %}
   <p style="margin-bottom: 10px;"><em>{% trans "This article was last modified:" %} {{ article.current_revision.modified }}</em></p>
 {% endblock %}
