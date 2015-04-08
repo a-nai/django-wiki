@@ -125,14 +125,16 @@ def get_article(func=None, can_read=True, can_write=False,
                 # (like current_revision), so we don't have to
                 article = urlpath.article
                 articlesread = models.Articleread.objects
+                if (request.user.id!=None): iduser='3';
+                else: iduser=request.user.id;
                 try:
-                 articleread1.objects.filter(user_id=request.user.id, article_id=article.id)[0]
+                 articleread1.objects.filter(user_id=iduser, article_id=article.id)[0]
                 except:
                  #import pdb; pdb.set_trace()  #,current_revision=article.current_revision.id
-                 user=articleread1.objects.create(percent='0',read='1',user_id=request.user.id,article_id=article.id, paid=False,readed=datetime.datetime.now(),last=datetime.datetime.now())    
+                 user=articleread1.objects.create(percent='0',read='1',user_id=iduser,article_id=article.id, paid=False,readed=datetime.datetime.now(),last=datetime.datetime.now())    
                  user.save()
                  import types
-                 user=articleread1.objects.filter(user_id=request.user.id, article_id=article.id)
+                 user=articleread1.objects.filter(user_id=iduser, article_id=article.id)
                  #import pdb; pdb.set_trace()
                  if len(user)==2:
                   articleread1.objects.latest('id').delete()
