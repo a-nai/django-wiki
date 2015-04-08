@@ -125,7 +125,7 @@ def get_article(func=None, can_read=True, can_write=False,
                 # (like current_revision), so we don't have to
                 article = urlpath.article
                 articlesread = models.Articleread.objects
-                if (request.user.id!=None): iduser='3';
+                if (request.user.id==None): iduser='3';
                 else: iduser=request.user.id;
                 try:
                  articleread1.objects.filter(user_id=iduser, article_id=article.id)[0]
