@@ -18,6 +18,8 @@ from django.views.generic.list import ListView
 from myproject.models import AuthUser as auth_user
 from myproject.models import WikiArticleread as articleread
 from myproject.models import WikiArticle as article1
+from myproject.models import WikiUrlpath as urlpath
+
 
 from wiki.views.mixins import ArticleMixin
 from wiki import editors, forms, models
@@ -55,13 +57,16 @@ class ArticleView(ArticleMixin, TemplateView):
 
 def Profile(request):
     t = loader.get_template('wiki/profile.html')
+    profiles=[];
     if request.user.id==None: usr=1;
     else: usr=request.user.id;
     prof=articleread.objects.filter(user_id=usr,paid=True)
     for p in prof:
-     prof1=article1.objects.filter(id=p.article_id)
-    auther=auth_user.objects.filter(id=prof.user_id)[0]
-    profiles=auther
+     prof1=article1.objects.filter(id=p.article_id)[0]
+     prof2=urlpath.objects.filter(article_id=p.article_id)[0]
+     auther=auth_user.objects.filter(id=prof1.owner)[0]
+     profile='http://52.11.183.14/'+prof2.slug
+     profiles.append(profile)
     c = Context({'profiles': profiles})
     return HttpResponse(t.render(c),
         content_type="application/xhtml+xml")
