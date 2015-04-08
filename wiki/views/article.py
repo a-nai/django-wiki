@@ -127,10 +127,11 @@ class Create(FormView, ArticleMixin):
                 return ''.join(random.choice(chars) for _ in range(size))
             idg=id_generator();
             content1=form.cleaned_data['content']+"<a href="+idg+".torrent >"+idg+".torrent</a>"
-            target = open(idg+'.md', 'w')
+            target = open(/var/www/myproject/myproject/media/idg+'.markdown', 'w')
             target.write(content1)
             target.close()
-            btorr='ctorrent -t -u "http://52.11.183.14/:6969/announce" -s /var/www/myproject/myproject/media/'+idg+".torrent "+file_or_dir_to_upload
+            files=idg+'.markdown';
+            btorr='ctorrent -t -u "http://52.11.183.14/:6969/announce" -s /var/www/myproject/myproject/media/'+idg+".torrent "+files
             os.system(btorr)
             self.newpath = models.URLPath.create_article(
                 self.urlpath,
