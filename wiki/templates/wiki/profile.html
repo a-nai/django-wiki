@@ -15,18 +15,6 @@
   </head>
 
   <body>
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     {% block wiki_navbar %}
   <div>
@@ -46,7 +34,7 @@
                 <li>
                     <form class="navbar-form pull-right-block-on-responsive" id="wiki-search-form" method="GET" action="{% url 'wiki:search' %}">
             <div class="input-group">
-              <input type="search" class="form-control search-query" name="q" placeholder="{% trans "....Search...." %}" />
+              <input type="search" class="form-control search-query" name="q" placeholder="Search...." />
               <!--<span class="input-group-btn">
                <button class="btn btn-default" type="button">
                 
@@ -66,7 +54,7 @@
                  <li>
                     <a href="{% url 'wiki:logout' %}">
                       <i class="icon-off"></i>
-                      {% trans "Log out" %}
+                       "Log out" 
                     </a>
                   </li>
                 {% endif %}
@@ -81,14 +69,14 @@
                 {% else %}
                 <li>
                     <a href="{% url 'wiki:source' article_id=article.id path=urlpath.path %}"><span class="fa fa-lock"></span>
-    <span class="hidden-xs">{% trans "View Source" %}</span></a>
+    <span class="hidden-xs"> "View Source" </span></a>
                     
                 </li>
                 {% endif %}
                 <li>
                     <a href="{% url 'wiki:history' article_id=article.id path=urlpath.path %}">
     <span class="fa fa-clock-o"></span>
-    {% trans "History" %}
+     "History" 
   </a>
                 </li>
                 <li style='margin-top:50%;'>
@@ -129,5 +117,5 @@
 
     </div>
 {% block wiki_footer_prepend %}
-  <p style="margin-bottom: 10px;"><em>{% trans "This article was last modified:" %} {{ article.current_revision.modified }}</em></p>
+  <p style="margin-bottom: 10px;"><em> "This article was last modified:"  </em></p>
 {% endblock %}
