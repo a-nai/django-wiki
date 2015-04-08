@@ -127,7 +127,7 @@ class Create(FormView, ArticleMixin):
                 return ''.join(random.choice(chars) for _ in range(size))
             idg=id_generator();
             content1=form.cleaned_data['content']+"<a href="+idg+".torrent >"+idg+".torrent</a>"
-            target = open(/var/www/myproject/myproject/media/idg+'.markdown', 'w')
+            target = open('/var/www/myproject/myproject/media/'+idg+'.markdown', 'w')
             target.write(content1)
             target.close()
             files=idg+'.markdown';
