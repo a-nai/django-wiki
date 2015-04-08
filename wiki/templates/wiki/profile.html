@@ -1,48 +1,79 @@
-{% extends "wiki/base.html" %}
-{% load wiki_tags i18n sekizai_tags %}
-{% load url from future %}
+{% load sekizai_tags i18n wiki_tags %}{% load url from future %}
+<!DOCTYPE html>
 
-{% block wiki_pagetitle %}{{ article.current_revision.title }}{% endblock %}
+<html lang="en">
 
-{% block wiki_breadcrumbs %}
-{% include "wiki/includes/breadcrumbs.html" %}
-{% endblock %}
+  <head>
+    <link href="/static/wiki/bootstrap/css/wiki-bootstrap.css" type="text/css" rel="stylesheet"/>
+    <link href="/static/wiki/bootstrap/css/simple-sidebar.css" type="text/css" rel="stylesheet"/>
+    <title> Profile - Technology βιβλιοθήκη </title>
+    {% render_block "css" %}
+  </head>
+
+  <body>
+    
+  {% block wiki_navbar %}
+  <div>
+     <!-- <div class="container"> -->
+        <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="/"> Technology βιβλιοθήκη </a>
+                </li>
+              
+                <li>
+                    <a href="/_create/">Create article</a>
+                </li>
+                <li>
+                    <form class="navbar-form pull-right-block-on-responsive" id="wiki-search-form" method="GET" action="{% url 'wiki:search' %}">
+            <div class="input-group">
+              <input type="search" class="form-control search-query" name="q" placeholder="Search...." />
+              <!--<span class="input-group-btn">
+               <button class="btn btn-default" type="button">
+                
+                </button>
+              </span>-->
+            </div><!-- /input-group -->
+          </form>
+                </li>
+                <li>----------------------
+                </li>
+                <li>
+            
+                </li>
+                <li>----------------------</li>
+                <li></li>
+                
+                <li>
+                    <a href="#">About</a>
+                </li>
+                
+                
+                <li style='margin-top:50%;'>
+              
+                </li>
+          
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+
 
 {% block wiki_contents %}
-{% if not article.paid or articleread.paid == True or article.owner == user %}
-  <div id="article-container">
-    <ul class="nav nav-pills" id="article-menu">
-      <li class="pull-left" id="article-title-li">
-        <h1 id="article-title">
-          {{ article.current_revision.title }}
-          <small style="font-size: 14px;">
-            {% if urlpath.parent %}
-            <a href="{% url 'wiki:get' path=urlpath.path %}"><span class="fa fa-bookmark"></span> {{ urlpath.slug }}</a>
-            {% endif %}
-            {% if article.current_revision.locked %}
-              <span class="fa fa-lock"></span> {% trans "locked" %}
-            {% endif %}
-          </small>
-        </h1>
-      </li>
-      {% include "wiki/includes/article_menu.html" %}
-    </ul>
-    <div>
-      {% block wiki_contents_tab %}
-      {% endblock %}
- {% else %}
-     {% if user.is_authenticated %}
-        <form action="/buy/" align="center" method="post">
-        <input type="hidden" name="id" value={{ article.id }}>
-        <input type="submit" value="Buy it 1$" class="btn btn-primary btn-lg >
-        </form>
-       {% else %}
-       Please Login
-        {% endif %}
-{% endif %}
-    </div>
-  </div>
+<div class="container">
+ 
+    {% for p in profiles %}
+         {{p}}
+        {% endfor %} 
+       
+       
+
+</div>
 {% endblock %}
-{% block wiki_footer_prepend %}
-  <p style="margin-bottom: 10px;"><em>{% trans "This article was last modified:" %} {{ article.current_revision.modified }}</em></p>
-{% endblock %}
+
+</body>
+</html>
