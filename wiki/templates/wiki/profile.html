@@ -2,22 +2,47 @@
 {% load wiki_tags i18n sekizai_tags %}
 {% load url from future %}
 
-{% block wiki_pagetitle %}Profile{% endblock %} 
+{% block wiki_pagetitle %}{{ article.current_revision.title }}{% endblock %}
 
-
-
+{% block wiki_breadcrumbs %}
+{% include "wiki/includes/breadcrumbs.html" %}
+{% endblock %}
 
 {% block wiki_contents %}
-<div class="container">
- 
-    {% for p in profiles %}
-         {{p}}
-        {% endfor %} 
-       
-       
-
-</div>
+{% if not article.paid or articleread.paid == True or article.owner == user %}
+  <div id="article-container">
+    <ul class="nav nav-pills" id="article-menu">
+      <li class="pull-left" id="article-title-li">
+        <h1 id="article-title">
+          {{ article.current_revision.title }}
+          <small style="font-size: 14px;">
+            {% if urlpath.parent %}
+            <a href="{% url 'wiki:get' path=urlpath.path %}"><span class="fa fa-bookmark"></span> {{ urlpath.slug }}</a>
+            {% endif %}
+            {% if article.current_revision.locked %}
+              <span class="fa fa-lock"></span> {% trans "locked" %}
+            {% endif %}
+          </small>
+        </h1>
+      </li>
+      {% include "wiki/includes/article_menu.html" %}
+    </ul>
+    <div>
+      {% block wiki_contents_tab %}
+      {% endblock %}
+ {% else %}
+     {% if user.is_authenticated %}
+        <form action="/buy/" align="center" method="post">
+        <input type="hidden" name="id" value={{ article.id }}>
+        <input type="submit" value="Buy it 1$" class="btn btn-primary btn-lg >
+        </form>
+       {% else %}
+       Please Login
+        {% endif %}
+{% endif %}
+    </div>
+  </div>
 {% endblock %}
-<!--
-</body>
-</html> -->
+{% block wiki_footer_prepend %}
+  <p style="margin-bottom: 10px;"><em>{% trans "This article was last modified:" %} {{ article.current_revision.modified }}</em></p>
+{% endblock %}
