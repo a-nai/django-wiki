@@ -21,7 +21,7 @@ from myproject.models import WikiArticle as article1
 from myproject.models import WikiUrlpath as urlpath
 from django.template.loader import get_template
 from django.template import Context
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 
 
 from wiki.views.mixins import ArticleMixin
