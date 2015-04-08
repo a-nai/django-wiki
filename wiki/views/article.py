@@ -19,6 +19,7 @@ from myproject.models import AuthUser as auth_user
 from myproject.models import WikiArticleread as articleread
 from myproject.models import WikiArticle as article1
 from myproject.models import WikiUrlpath as urlpath
+from django.template.loader import get_template
 
 
 from wiki.views.mixins import ArticleMixin
@@ -56,7 +57,7 @@ class ArticleView(ArticleMixin, TemplateView):
         return ArticleMixin.get_context_data(self, **kwargs)
 
 def Profile(request):
-    t = loader.get_template('wiki/profile.html')
+    t = get_template('wiki/profile.html')
     profiles=[];
     if request.user.id==None: usr=1;
     else: usr=request.user.id;
