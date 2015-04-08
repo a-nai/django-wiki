@@ -25,7 +25,7 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="{% url 'wiki:root' %}"> Technology βιβλιοθήκη </a>
+                    <a href="/"> Technology βιβλιοθήκη </a>
                 </li>
               
                 <li>
@@ -50,31 +50,14 @@
                 </li>
                 <li>----------------------</li>
                 <li></li>
-                {% if user.is_authenticated %}
-                 <li>
-                    <a href="{% url 'wiki:logout' %}">
-                      <i class="icon-off"></i>
-                       "Log out" 
-                    </a>
-                  </li>
-                {% endif %}
+                
                 <li>
                     <a href="#">About</a>
                 </li>
                 
-                <li>
-                    <a href="{% url 'wiki:history' article_id=article.id path=urlpath.path %}">
-    <span class="fa fa-clock-o"></span>
-     "History" 
-  </a>
-                </li>
+                
                 <li style='margin-top:50%;'>
-                {% if user.is_authenticated %}
-                 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-                 <input id="id_business" name="business" type="hidden" value="aaronlivni2@mail.com" /><input id="id_amount" name="amount" type="hidden" value="1.00" /><input id="id_item_name" name="item_name" type="hidden" value="Wiki money" /><input id="id_notify_url" name="notify_url" type="hidden" value="http://52.11.183.14/notify/" /><input id="id_cancel_return" name="cancel_return" type="hidden" value="http://52.11.183.14/cancel/" /><input id="id_return_url" name="return" type="hidden" value="http://52.11.183.14/return/" /><input id="id_custom" name="custom" type="hidden" value={{ user.id }} /><input id="id_invoice" name="invoice" type="hidden" value={% now "Hiu" %} /><input id="id_cmd" name="cmd" type="hidden" value="_xclick" /><input id="id_charset" name="charset" type="hidden" value="utf-8" /><input id="id_currency_code" name="currency_code" type="hidden" value="USD" /><input id="id_no_shipping" name="no_shipping" type="hidden" value="1" />
-                 <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Buy it Now" />
-                 </form>
-                {% endif %}
+              
                 </li>
               
         
@@ -96,13 +79,11 @@
 
 <div class="container">
  
-     {% if user.is_authenticated %}
+     
         {% for p in profiles %}
          {{p}}
         {% endfor %}
-       {% else %}
-       Please Login
-        {% endif %}
+       
 
     </div>
 {% block wiki_footer_prepend %}
