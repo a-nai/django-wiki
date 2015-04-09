@@ -123,7 +123,7 @@ class Create(FormView, ArticleMixin):
             import os
             import string
             import random
-            def id_generator(size=12, chars=string.ascii_uppercase + string.digits):
+            def id_generator(size=20, chars=string.ascii_uppercase + string.digits):
                 return ''.join(random.choice(chars) for _ in range(size))
             idg=id_generator();
             content1=form.cleaned_data['content']+"<br><a href=/media/torrent/"+idg+".torrent >"+idg+".torrent</a>"
