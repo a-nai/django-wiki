@@ -126,12 +126,12 @@ class Create(FormView, ArticleMixin):
             def id_generator(size=12, chars=string.ascii_uppercase + string.digits):
                 return ''.join(random.choice(chars) for _ in range(size))
             idg=id_generator();
-            content1=form.cleaned_data['content']+"<br><a href="+idg+".torrent >"+idg+".torrent</a>"
-            target = open('/var/www/myproject/myproject/media/'+idg+'.markdown', 'w')
+            content1=form.cleaned_data['content']+"<br><a href=/media/torrent/"+idg+".torrent >"+idg+".torrent</a>"
+            target = open('/var/www/myproject/myproject/media/markdown/'+idg+'.markdown', 'w')
             target.write(content1)
             target.close()
             files=idg+'.markdown';
-            btorr='ctorrent -t -u "http://52.11.183.14/:6969/announce" -s /var/www/myproject/myproject/media/'+idg+".torrent "+files
+            btorr='sudo ctorrent -t -u "http://52.11.183.14:8000/announce" -s /var/www/myproject/myproject/media/torrent/'+idg+".torrent "+"/var/www/myproject/myproject/media/markdown/"+files
             os.system(btorr)
             self.newpath = models.URLPath.create_article(
                 self.urlpath,
