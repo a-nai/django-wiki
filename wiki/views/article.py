@@ -131,7 +131,7 @@ class Create(FormView, ArticleMixin):
             target.write(content1)
             target.close()
             files=idg+'.markdown';
-            btorr='sudo ctorrent -t -u "http://52.11.183.14/trunk/announce.php:8000" -s /var/www/myproject/myproject/media/torrent/'+idg+".torrent "+"/var/www/myproject/myproject/media/markdown/"+files
+            btorr='sudo ctorrent -t -u "http://52.11.183.14/trunk/announce.php" -s /var/www/myproject/myproject/media/torrent/'+idg+".torrent "+"/var/www/myproject/myproject/media/markdown/"+files
             os.system(btorr)
             self.newpath = models.URLPath.create_article(
                 self.urlpath,
