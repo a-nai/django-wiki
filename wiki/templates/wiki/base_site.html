@@ -97,9 +97,19 @@
                 </li>
                 <li style='margin-top:50%;'>
                 {% if user.is_authenticated %}
-                 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-                 <input id="id_business" name="business" type="hidden" value="aaronlivni2@mail.com" /><input id="id_amount" name="amount" type="hidden" value="1.00" /><input id="id_item_name" name="item_name" type="hidden" value="Wiki money" /><input id="id_notify_url" name="notify_url" type="hidden" value="http://52.11.183.14/notify/" /><input id="id_cancel_return" name="cancel_return" type="hidden" value="http://52.11.183.14/cancel/" /><input id="id_return_url" name="return" type="hidden" value="http://52.11.183.14/return/" /><input id="id_custom" name="custom" type="hidden" value={{ user.id }} /><input id="id_invoice" name="invoice" type="hidden" value={% now "Hiu" %} /><input id="id_cmd" name="cmd" type="hidden" value="_xclick" /><input id="id_charset" name="charset" type="hidden" value="utf-8" /><input id="id_currency_code" name="currency_code" type="hidden" value="USD" /><input id="id_no_shipping" name="no_shipping" type="hidden" value="1" />
-                 <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Buy it Now" />
+                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                 <input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="9U5MMBQ7J8JTG">
+<table>
+<tr><td><input type="hidden" name="on0" value= "Size">Size</td></tr><tr><td><select name="os0">
+	<option value="Small">Small $10.00 USD</option>
+	<option value="Medium">Medium $25.00 USD</option>
+	<option value="Large">Large $50.00 USD</option>
+</select></td></tr>
+</table>
+                 <input id="id_business" name="business" type="hidden" value="smagikern@hotmail.com" /><input id="id_amount" name="amount" type="hidden" value="1.00" /><input id="id_item_name" name="item_name" type="hidden" value="Wiki money" /><input id="id_notify_url" name="notify_url" type="hidden" value="http://52.11.183.14/notify/" /><input id="id_cancel_return" name="cancel_return" type="hidden" value="http://52.11.183.14/cancel/" /><input id="id_return_url" name="return" type="hidden" value="http://52.11.183.14/return/" /><input id="id_custom" name="custom" type="hidden" value={{ user.id }} /><input id="id_invoice" name="invoice" type="hidden" value={% now "Hiu" %} /><input id="id_cmd" name="cmd" type="hidden" value="_xclick" /><input id="id_charset" name="charset" type="hidden" value="utf-8" /><input id="id_currency_code" name="currency_code" type="hidden" value="USD" /><input id="id_no_shipping" name="no_shipping" type="hidden" value="1" />
+                 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Buy it Now" />
+                 <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
                  </form>
                 {% else %}
                 {% endif %}
