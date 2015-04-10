@@ -95,11 +95,7 @@
     {% trans "History" %}
   </a>
                 </li>
-                <li <!--style='margin-top:50%;' <input id="id_business" name="business" type="hidden" value="smagikern@hotmail.com" />
-                <input id="id_amount" name="amount" type="hidden" value="1.00" /> 
-                <input id="id_item_name" name="item_name" type="hidden" value="Wiki money" /> 
-                <input id="id_cmd" name="cmd" type="hidden" value="_xclick" />
-                <input id="id_no_shipping" name="no_shipping" type="hidden" value="1"/> --> >
+                <li>
                 {% if user.is_authenticated %}
                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                  <input type="hidden" name="cmd" value="_s-xclick">
