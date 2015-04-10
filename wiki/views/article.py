@@ -120,19 +120,6 @@ class Create(FormView, ArticleMixin):
             ip_address = self.request.META.get('REMOTE_ADDR', None)
 
         try:
-            import os
-            import string
-            import random
-            def id_generator(size=20, chars=string.ascii_uppercase + string.digits):
-                return ''.join(random.choice(chars) for _ in range(size))
-            idg=id_generator();
-            content1=form.cleaned_data['content']+"<br><a href=/media/torrent/"+idg+".torrent >"+idg+".torrent</a>"
-            target = open('/var/www/myproject/myproject/media/markdown/'+idg+'.markdown', 'w')
-            target.write(content1)
-            target.close()
-            files=idg+'.markdown';
-            btorr='sudo ctorrent -t -u "http://52.11.183.14/media/announce:8000" -s /var/www/myproject/myproject/media/torrent/'+idg+".torrent "+"/var/www/myproject/myproject/media/markdown/"+files
-            os.system(btorr)
             self.newpath = models.URLPath.create_article(
                 self.urlpath,
                 form.cleaned_data['slug'],
