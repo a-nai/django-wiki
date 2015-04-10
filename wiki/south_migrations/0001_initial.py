@@ -33,11 +33,20 @@ class Migration(SchemaMigration):
             ('last', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name=u'user_articles', null=True, on_delete=models.SET_NULL, to=orm['auth.User'])),
             ('paid', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('read', self.gf('django.db.models.fields.BooleanField')(default=True)),
+            ('read', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('article', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['wiki.Article'])),
             ('percent', self.gf('django.db.models.fields.FloatField')(default='0', null=True)),
         ))
         db.send_create_signal(u'wiki', ['ArticleRead'])
+        db.create_table(u'wiki_articleread2', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('current_revision', self.gf('django.db.models.fields.related.OneToOneField')(blank=True, related_name=u'current_set', unique=True, null=True, to=orm['wiki.ArticleRevision'])),
+            ('readed', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name=u'user_articles', null=True, on_delete=models.SET_NULL, to=orm['auth.User'])),
+            ('read', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('article', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['wiki.Article'])),
+        ))
+        db.send_create_signal(u'wiki', ['ArticleRead2'])
         db.create_table(u'wiki_paypal', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
