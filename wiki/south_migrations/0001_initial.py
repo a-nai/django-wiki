@@ -11,6 +11,8 @@ class Migration(SchemaMigration):
         # Adding model 'Article'
         
         db.add_column('auth_user', 'balance', self.gf('django.db.models.fields.FloatField')(max_length=100,  null=True, default='0.1'))
+        db.add_column('auth_user', 'paypal_email', self.gf('django.db.models.fields.EmailField')(max_length=75, blank=True))
+        db.add_column('wiki_urlpath', 'torrent', self.gf('django.db.models.fields.CharField')(max_length=512))
         
         db.create_table(u'wiki_article', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
