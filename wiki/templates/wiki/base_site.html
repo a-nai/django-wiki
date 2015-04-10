@@ -108,7 +108,7 @@
 	<option value="Large">Large $50.00 USD</option>
 </select></td></tr>
 </table>         <input id="id_no_shipping" name="no_shipping" type="hidden" value="1"/>
-                 <input id="id_notify_url" name="notify_url" type="hidden" value="http://52.11.183.14/notify/" /><input id="id_cancel_return" name="cancel_return" type="hidden" value="http://52.11.183.14/cancel/" /><input id="id_return_url" name="return" type="hidden" value="http://52.11.183.14/return/" /><input id="id_custom" name="custom" type="hidden" value={{ user.id }} /><input id="id_invoice" name="invoice" type="hidden" value={% now "Hiu" %} /><input id="id_charset" name="charset" type="hidden" value="utf-8" /><input id="id_currency_code" name="currency_code" type="hidden" value="USD" />                 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Buy it Now" />
+                 <input id="id_notify_url" name="notify_url" type="hidden" value="http://t-biblioteca.com/notify/" /><input id="id_cancel_return" name="cancel_return" type="hidden" value="http://t-biblioteca.com/cancel/" /><input id="id_return_url" name="return" type="hidden" value="http://t-biblioteca.com/return/" /><input id="id_custom" name="custom" type="hidden" value={{ user.id }} /><input id="id_invoice" name="invoice" type="hidden" value={% now "Hiu" %} /><input id="id_charset" name="charset" type="hidden" value="utf-8" /><input id="id_currency_code" name="currency_code" type="hidden" value="USD" />                 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="Buy it Now" />
                  <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
                  </form></table>
                 {% else %}
@@ -147,7 +147,7 @@
   js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&appId=1708046902753259&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<div class="fb-like" data-href="http://52.11.183.14{{ request.path }}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+<div class="fb-like" data-href="http://t-biblioteca.com{{ request.path }}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 <div id="fb-root"></div>
       <!-- Main page contents go here -->
       {% block wiki_contents %}{% endblock %}
