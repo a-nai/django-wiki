@@ -118,12 +118,13 @@ class Create(FormView, ArticleMixin):
                 ip_address = self.request.META.get('REMOTE_ADDR', None)
         elif settings.LOG_IPS_ANONYMOUS:
             ip_address = self.request.META.get('REMOTE_ADDR', None)
+
         try:
             self.newpath = models.URLPath.create_article(
                 self.urlpath,
                 form.cleaned_data['slug'],
                 title=form.cleaned_data['title'],
-                content=content1,
+                content=form.cleaned_data['content'],
                 user_message=form.cleaned_data['summary'],
                 user=user,
                 ip_address=ip_address,
