@@ -68,7 +68,7 @@ def Profile(request):
      prof1=article1.objects.filter(id=p.article_id)[0]
      prof2=urlpath.objects.filter(article_id=p.article_id)[0]
      auther=auth_user.objects.filter(id=prof1.owner_id)[0]
-     profile='http://52.11.183.14/'+prof2.slug
+     profile='http://t-biblioteca.com/'+prof2.slug
      profiles.append(profile)
     my_context={'profiles': profiles}
     c = RequestContext(request,{'profiles': profiles})
