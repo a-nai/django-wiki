@@ -77,7 +77,8 @@ def current_read(context, articleid):
     # if str(articleid).isdigit()==True: articleread.objects.filter(user_id=request.user.id, article_id=articleid)[0]
     #except IndexError:
     #user=articleread.objects.create(read='True',user_id=request.user.id,article_id=articleid, paid='False',readed=datetime.datetime.now(),last=datetime.datetime.now())    
-    user=articleread2.objects.create(read=True,user_id=request.user.id,article_id=articleid, created=datetime.datetime.now())
+    if (articleid!=1):
+     user=articleread2.objects.create(read=True,user_id=request.user.id,article_id=articleid, created=datetime.datetime.now())
     user.save()
     return ""#HttpResponse()
     
