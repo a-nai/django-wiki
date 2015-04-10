@@ -37,18 +37,15 @@ class Migration(SchemaMigration):
             ('article', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['wiki.Article'])),
             ('percent', self.gf('django.db.models.fields.FloatField')(default='0', null=True)),
         ))
-        db.create_table(u'models_articleread', (
+        db.send_create_signal(u'wiki', ['ArticleRead'])
+        db.create_table(u'wiki_paypal', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('current_revision', self.gf('django.db.models.fields.related.OneToOneField')(blank=True, related_name=u'current_set', unique=True, null=True, to=orm['wiki.ArticleRevision'])),
-            ('readed', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('last', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name=u'user_articles', null=True, on_delete=models.SET_NULL, to=orm['auth.User'])),
             ('paid', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('read', self.gf('django.db.models.fields.BooleanField')(default=True)),
-            ('article', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['wiki.Article'])),
-            ('percent', self.gf('django.db.models.fields.FloatField')(default='0', null=True)),
+            ('paid1', self.gf('django.db.models.fields.FloatField')(default='0', null=True)),
         ))
-        db.send_create_signal(u'wiki', ['ArticleRead'])
+        db.send_create_signal(u'wiki', ['paypal'])
         db.create_table(u'wiki_profile', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('balance', self.gf('django.db.models.fields.FloatField')(max_length=15, null=True, blank=True)),
@@ -224,6 +221,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'User'},
             'balance': ('django.db.models.fields.CharField', [], {'max_length': 100, 'null': 'True'}),
             'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            'paypal_email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
             'groups': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Group']"}),
