@@ -42,13 +42,27 @@
                 <li>----------------------
                 </li>
                 <li>
-            
+                
+                {% if user.is_authenticated %}
+                 {{ user.last_name }} {% account_balance %}
+                {% else %}
+                   <a href="http://52.11.183.14/simple/login/fb"><img style="height:30px;" src="http://upload.wikimedia.org/wikipedia/commons/c/c2/F_icon.svg"> Facebook</a>
+                {% endif %}
                 </li>
                 <li>----------------------</li>
                 <li></li>
+                {% if user.is_authenticated %}
+                 <li>
+                    <a href="{% url 'wiki:logout' %}">
+                      <i class="icon-off"></i>
+                      {% trans "Log out" %}
+                    </a>
+                  </li>
+                {% endif %}
+                <li></li>
                 
                 <li>
-                    <a href="#">About</a>
+                    <a href="#">Profile</a>
                 </li>
                 
                 
