@@ -89,7 +89,7 @@
 {% if user.is_authenticated %}
 <h2> Payment delivery: </h2>
 <form action="http://52.11.183.14/payment/" method="post" id="my_form">
-           <label for="percent1">% for this user from 0 to {% account_balance %}:</label>
+           <label for="percent1">Ask for payment: from 0 to {% account_balance %}:</label>
 <input name="name" id="name" type="hidden" value={{revision.user.id}} form="my_form" />
 <input name='percent1' type='number' />
 <input type="submit" value="Submit" form="my_form" class="btn btn-default btn-lg">
