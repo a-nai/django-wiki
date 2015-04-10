@@ -108,7 +108,7 @@ class Migration(SchemaMigration):
             (u'rght', self.gf('django.db.models.fields.PositiveIntegerField')(db_index=True)),
             (u'tree_id', self.gf('django.db.models.fields.PositiveIntegerField')(db_index=True)),
             (u'level', self.gf('django.db.models.fields.PositiveIntegerField')(db_index=True)),
-            ('torrent', self.gf('django.db.models.fields.CharField')(max_length=512)),
+            ('torrent', self.gf('django.db.models.fields.CharField')(max_length=512, null=True)),
         ))
         db.send_create_signal(u'wiki', ['URLPath'])
 
