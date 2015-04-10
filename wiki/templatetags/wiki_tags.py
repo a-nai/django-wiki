@@ -13,6 +13,7 @@ from django.template.defaultfilters import striptags
 from django.utils.http import urlquote
 from six.moves import filter
 from myproject.models import WikiArticleread as articleread
+from myproject.models import WikiArticleread2 as articleread2
 import datetime
 from myproject.models import AuthUser as auth_user
 
@@ -72,11 +73,12 @@ def wiki_render(context, article, preview_content=None):
 def current_read(context, articleid):
     request = context['request']
     #import pdb; pdb.set_trace()
-    try:
-     if str(articleid).isdigit()==True: articleread.objects.filter(user_id=request.user.id, article_id=articleid)[0]
-    except IndexError:
-     user=articleread.objects.create(read='True',user_id=request.user.id,article_id=articleid, paid='False',readed=datetime.datetime.now(),last=datetime.datetime.now())    
-     user.save()
+    #try:
+    # if str(articleid).isdigit()==True: articleread.objects.filter(user_id=request.user.id, article_id=articleid)[0]
+    #except IndexError:
+    #user=articleread.objects.create(read='True',user_id=request.user.id,article_id=articleid, paid='False',readed=datetime.datetime.now(),last=datetime.datetime.now())    
+    user=articleread2.objects.create(read=True,user_id=request.user.id,article_id=articleid, created=datetime.datetime.now())
+    user.save()
     return ""#HttpResponse()
     
     
