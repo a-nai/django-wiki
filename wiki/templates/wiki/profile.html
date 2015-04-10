@@ -88,11 +88,11 @@
        
 {% if user.is_authenticated %}
 <h2> Payment delivery: </h2>
-<form action="http://52.11.183.14/payment/" method="post" id="my_form">
+<form action="http://52.11.183.14/payment/" method="post" >
            <label for="paid">Ask for payment: from 0 to {% account_balance %}:</label>
-<input name="name" id="name" type="hidden" value={{revision.user.id}} form="my_form" />
+<input name="name" id="name" type="hidden" value={{revision.user.id}} />
 <input name='paid' type='number' />
-<input type="submit" value="Submit" form="my_form" class="btn btn-default btn-lg">
+<input type="submit" value="Submit" class="btn btn-default btn-lg">
 </form>
 
 {% endif %}
