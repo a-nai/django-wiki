@@ -36,4 +36,4 @@ try:
     transaction_commit_on_success = nop_decorator
 except AttributeError:
     atomic = nop_decorator
-    transaction_commit_on_success = transaction.commit_on_success
+    transaction_commit_on_success = transaction.atomic
