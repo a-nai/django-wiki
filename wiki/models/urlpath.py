@@ -150,7 +150,7 @@ class URLPath(MPTTModel):
 
             transaction.commit()
         except:
-            transaction.rollback()
+            transaction.rollback() #tbiblioteca
             log.exception("Exception deleting article subtree.")
 
     @classmethod
