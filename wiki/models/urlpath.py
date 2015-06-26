@@ -19,7 +19,7 @@ from django.utils.encoding import python_2_unicode_compatible
 try:
     notrans = transaction.non_atomic_requests
 except:
-    notrans = transaction.commit_manually
+    notrans = transaction.atomic
 
 from django.db.models.signals import post_save, pre_delete
 from django.utils.translation import ugettext_lazy as _, ugettext
