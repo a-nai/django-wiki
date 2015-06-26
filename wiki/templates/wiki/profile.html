@@ -29,10 +29,13 @@
                     <a href="/_create/">Create article</a>
                 </li>
                 <li>
-                    <form class="navbar-form pull-right-block-on-responsive" id="wiki-search-form" method="GET" action="{% url 'wiki:search' %}">
+                    <form method="GET" action="{% url 'wiki:search' %}">
             <div class="input-group">
-              <input type="search" class="form-control search-query" name="q" placeholder="Search...." />
-              <!--<span class="input-group-btn">
+              <input type="search" name="q" placeholder="Search...." />
+              <!--
+              class="navbar-form pull-right-block-on-responsive" id="wiki-search-form"
+              class="form-control search-query"
+              <span class="input-group-btn">
                <button class="btn btn-default" type="button">
                 
                 </button>
