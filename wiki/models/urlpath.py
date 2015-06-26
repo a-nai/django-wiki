@@ -137,7 +137,7 @@ class URLPath(MPTTModel):
         return None
 
     @atomic
-    @transaction_commit_on_success
+    @transaction.atomic#@transaction_commit_on_success
     def delete_subtree(self):
         """
         NB! This deletes this urlpath, its children, and ALL of the related
@@ -269,7 +269,7 @@ class URLPath(MPTTModel):
 
     @classmethod
     @atomic
-    @transaction_commit_on_success
+    @transaction.atomic#@transaction_commit_on_success
     def create_article(
             cls,
             parent,
